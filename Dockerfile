@@ -1,14 +1,13 @@
-# Use OpenJDK image
-FROM openjdk:17-jdk-slim
-
-# Set the working directory inside container
+# Build stage
+FROM openjdk:17-jdk-slim AS build
 WORKDIR /app
+COPY . .
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests
 
-# Copy the JAR file into the container
-COPY target/*.jar app.jar
-
-# Expose the port your Spring Boot app runs on
+# Run stage
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/studiobackend.jar app.jar
 EXPOSE 8080
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
