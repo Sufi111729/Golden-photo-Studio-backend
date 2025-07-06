@@ -8,6 +8,7 @@ import java.time.LocalTime;
 
 @Data
 public class BookingDTO {
+    
     @NotBlank(message = "Name is required")
     private String name;
 
@@ -16,7 +17,10 @@ public class BookingDTO {
     private String email;
 
     @NotBlank(message = "Phone number is required")
-    @Pattern(regexp = "^[0-9]{10,15}$", message = "Invalid phone number")
+    @Pattern(
+        regexp = "^\\+?[0-9]{10,15}$",
+        message = "Invalid phone number. It should be 10-15 digits with optional + at the start."
+    )
     private String phone;
 
     @NotBlank(message = "Shoot type is required")
