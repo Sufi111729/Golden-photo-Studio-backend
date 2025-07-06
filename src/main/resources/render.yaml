@@ -1,0 +1,14 @@
+# Exported from Render on 2025-07-06T12:19:28Z
+services:
+- type: web
+  name: Golden-photo-Studio-backend
+  runtime: docker
+  repo: https://github.com/Sufi111729/Golden-photo-Studio-backend
+  plan: free
+  region: singapore
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+  autoDeployTrigger: commit
+  previews:
+    generation: automatic
+version: "1"
