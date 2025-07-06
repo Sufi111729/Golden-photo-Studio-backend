@@ -10,7 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/bookings")
-@CrossOrigin(origins = "https://goldenphotostudio.netlify.app/, https://localhost:3000")
+@CrossOrigin(origins = {
+    "http://localhost:3000",
+    "https://goldenphotostudio.netlify.app"
+})
+
+
 public class BookingController {
 
     private final BookingService bookingService;
